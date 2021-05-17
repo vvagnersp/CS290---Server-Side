@@ -1,0 +1,28 @@
+<h1>POST Request Received</h1>
+<p>URL Parameters:</p>
+<table>
+    <thead>
+        <th>Parameter</th>
+        <th>Value</th>
+    </thead>
+    {{#each urlData}}
+    <tr>
+        <td>{{this.name}}</td>
+        <td>{{this.value}}</td>
+    </tr>
+    {{/each}}
+</table>
+
+<p>Body Parameters:</p>
+<table>
+    <thead>
+        <th>Parameter</th>
+        <th>Value</th>
+    </thead>
+    {{#each bodyData}}
+    <tr>
+        <td>{{this.name}}</td>
+        <td>{{this.value}}</td>
+    </tr>
+    {{/each}}
+</table>

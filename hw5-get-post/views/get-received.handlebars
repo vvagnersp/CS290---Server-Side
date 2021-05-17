@@ -1,0 +1,14 @@
+<h1>GET Request Received</h1>
+<p>The parameters you sent were:</p>
+<table>
+    <thead>
+        <th>Parameter</th>
+        <th>Value</th>
+    </thead>
+    {{#each urlData}}
+    <tr>
+        <td>{{this.name}}</td>
+        <td>{{this.value}}</td>
+    </tr>
+    {{/each}}
+</table>
