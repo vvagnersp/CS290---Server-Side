@@ -1,0 +1,123 @@
+/* -------------------------------------------------------------------------- */
+/* General styles */
+body {
+  background-color: rgb(226, 202, 170);
+  font-family: 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin: 0px;
+  padding: 0px;
+}
+
+::selection {
+  background-color:rgb(192, 194, 194);
+}
+
+ul {
+  list-style-type: none;
+}
+
+/* General centering content */
+.center  {
+  text-align: center;
+  margin-top: 0px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center-child {
+  display: inline-block;
+  text-align: left;
+  margin-left: inherit;
+  margin-right: inherit;
+  max-width: 880px;
+  width: 90%;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Header Styles */
+#header {
+  background-color: rgb(175, 131, 131);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+  margin: 0px;
+  padding: 10px;
+  user-select: none;
+}
+
+#header-items {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 960px;
+  position: relative;
+}
+
+#header a {
+  color: inherit;
+  text-decoration: none;
+  opacity: 1;
+}
+
+#header a:hover {
+  color: rgb(138, 38, 38);
+}
+
+#header li {
+  font-family: 'American Typewriter';
+  font-weight: 50;
+  display: inline;
+  font-weight: 600;
+  padding: 0px;
+  margin: 0px 25px 0px 0px;
+}
+
+#logo {
+  font-size: 35px;
+  background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);   -webkit-background-clip: text;
+  color: transparent;
+  display: inline;
+  padding: 2px 5px 0px 5px;
+  margin: 5px 0px 0px 25px;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* Footer Styles */
+#footer {
+  background-color: rgb(119, 91, 91);
+  display: flex;
+  align-items: center;
+  text-align: center;
+  flex-direction: row;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  height: 60px;
+  width: 100%;
+}
+
+#footer li {
+  display: inline;
+  margin: 2.5px;
+}
+
+#footer a {
+  color: rgb(202, 202, 202);
+  text-decoration: none;
+}
+
+#footer a:hover {
+  color:rgb(65, 64, 64);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Home Page Styles */
+#home-image {
+  margin: 0px;
+  max-height: 650px;
+  max-width: 100%;
+}
+
+#home-carousel {
+  height: 50px;
+  width: 960px;
+  align-items: center;
+}
