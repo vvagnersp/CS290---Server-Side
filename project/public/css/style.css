@@ -234,6 +234,7 @@ ul {
 }
 
 #purchase-container {
+  position: relative;
   display: flex;
   flex-direction: space-between;
   background-color:rgb(160, 146, 146);
@@ -246,6 +247,12 @@ ul {
   height: 450px;
   width: 300px;
   border-radius: 12px;
+}
+
+#purchase-src {
+  position: absolute;
+  top: 445px;
+  left: 40px;
 }
 
 #gram-icons {
