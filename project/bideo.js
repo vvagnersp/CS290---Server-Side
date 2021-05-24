@@ -2,6 +2,7 @@ var express = require('express');
 
 var app = express();
 var hbs = require('express-handlebars').create({defaultLayout:'main', extname: 'hbs',});
+var bodyParser = require('body-parser');
 
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
@@ -12,7 +13,7 @@ app.use(express.static('public'));
 // Render main four pages: home, store, purchase, and about
 app.get('/', function(req, res) {
   res.render('index', {title: 'Home', condition: false});
-})
+});
 
 app.get('/store', function(req, res) {
   var storeItems = [    
@@ -77,16 +78,21 @@ app.get('/store', function(req, res) {
   }
 ]; 
   res.render('store', {title: 'Store', items: storeItems, condition: false});
-})
+});
 
 app.get('/purchase', function(req, res) {
   res.render('purchase', {title: 'Purchase', condition: false});
-})
+});
 
 app.get('/about', function(req, res) {
   res.render('about', {title: 'About', condition: false});
-})
+});
 
+// Form submission
+app.post('/about', function(req, res) {
+  console.log(req.body);
+  res.render('about', {title: 'About', condition: false});
+});
 
 // Render error pages
 app.use(function(req,res){

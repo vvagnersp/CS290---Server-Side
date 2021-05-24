@@ -1,22 +1,24 @@
-<div class="center">
-    <div class="center-child">
-        <h3>Store Page</h3>
-    </div>
-</div>
-
-<div class="center">
-    <div class="store-center">
-        {{#each items}}
-        <div class="store-item">
-            <img class = "store-img" src={{ this.image }}>
-            <ul>
-                <li><b>Item</b>:  {{this.name}}</li>
-                <li><b>Rating</b>:  {{this.rating}}</li>
-                <li><b>Description</b>:  {{this.description}}</li>
-                <li><b>Price</b>:  {{this.price}}</li>
-            </ul>
-            <a class="source" href={{this.source}}>Source: Pixabay</a> 
+<div class="page-content">
+    <div class="center">
+        <div class="center-child">
+            <h3>Store Page</h3>
         </div>
-        {{/each}}
+    </div>
+
+    <div class="center">
+        <div class="store-center">
+            {{#each items}}
+            <div class="store-item">
+                <img class = "store-img" src={{ this.image }}>
+                <ul>
+                    <li><b>Item</b>:  {{this.name}}</li>
+                    <li><b>Rating</b>:  {{this.rating}}</li>
+                    <li><b>Description</b>:  {{this.description}}</li>
+                    <li><b>Price</b>:  {{this.price}}</li>
+                </ul>
+                <a class="source" href={{this.source}}>Source: Pixabay</a> 
+            </div>
+            {{/each}}
+        </div>
     </div>
 </div>

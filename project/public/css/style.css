@@ -1,10 +1,12 @@
 /* -------------------------------------------------------------------------- */
 /* General styles */
 body {
+  height: 100%;
   background-color: rgb(226, 202, 170);
   font-family: 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
   margin: 0px;
   padding: 0px;
+  overflow: hidden;
 }
 
 ::selection {
@@ -35,12 +37,26 @@ ul {
 .center-child {
   display: inline-block;
   text-align: left;
-  margin-left: inherit;
-  margin-right: inherit;
+  margin-left: 0px;
   max-width: 880px;
   width: 90%;
 } 
 
+.page-wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  margin: 0;
+}
+
+.page-content {
+  height: 1000px;
+  flex-grow: 1;
+  overflow: auto;
+  min-height: 2em;
+}
 
 /* -------------------------------------------------------------------------- */
 /* Header Styles */
@@ -50,6 +66,8 @@ ul {
   margin: 0px;
   padding: 10px;
   user-select: none;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
 #header-items {
@@ -102,6 +120,8 @@ ul {
   bottom: 0;
   height: 60px;
   width: 100%;
+  flex-shrink: 0;
+  overflow: hidden;
 }
 
 #footer li {
@@ -142,7 +162,7 @@ ul {
   margin-bottom: 100px;
   max-width: 880px;
   width: 90%;
-  overflow-y: auto;
+  position: relative;
 } 
 .store-img {
   height: 125px;
@@ -164,9 +184,9 @@ ul {
 
 .source {
   position: absolute;
-  margin-top: 130px;
-  margin-left: 85px;
   font-size: 10px !important;
+  margin-top: 130px;
+  margin-left: 80px;
 }
 
 /* Purchase page Styles */
@@ -200,6 +220,7 @@ ul {
 #about-container {
   display: flex;
   justify-content: center;
+  margin-left: 75px;
   width: 880px;
 }
 
@@ -226,14 +247,15 @@ ul {
   display: inline-block;
   width: 800px;
   text-align: left;
-  margin: 20px;
+  margin-left: 40px;
 }
 
 #contact-form input {
   background-color:rgba(185, 165, 165, 0.507);
 }
 
-#user-text {
+#userText {
+  text-align: left;
   background-color:rgba(185, 165, 165, 0.507);
   width: 800px;
   height: 100px;
