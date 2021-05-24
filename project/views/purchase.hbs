@@ -1,62 +1,41 @@
-<!-- Import modules for Bootstrap carousel-->
-<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="bootstrap/js/bootstrap.js"></script>
-
-<div class="center">
-    <div class="center-child">
-        <h3>Purchase</h3>
+<div class="page-content">
+    <div class="center">
+        <div class="center-child">
+            <h3>Purchase</h3>
+        </div>
     </div>
-</div>
 
 
-<div class="center">
-    <div id="center-purchase">
-        <div id="purchase-container">
-            <div id="purchase-carousel" class="carousel slide" data-interval="false">
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    <li data-target="#purchase-carousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#purchase-carousel" data-slide-to="1"></li>
-                    <li data-target="#purchase-carousel" data-slide-to="2"></li>
-                </ol>
-
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner" role="listbox">
-                    <div class="item active">
-                    <img src="images/purchase/gramophone-2290556_1920.jpg" alt="Gramophone 1">
-                    <div class="carousel-caption">
-                        <a href="https://pixabay.com/photos/gramophone-record-player-nostalgic-2290556/">Source: Pixabay</a>
-                    </div>
-                    </div>
-                    <div class="item">
-                    <img src="images/purchase/flea-market-67370_1920.jpg" alt="Gramophone 2">
-                    <div class="carousel-caption">
-                        <a href="https://pixabay.com/photos/flea-market-gramophone-67370/">Source: Pixabay</a>
-                    </div>
-                    </div>
-                    <div class="item">
-                    <img src="images/purchase/gramophone-1721946_1920.jpg" alt="Gramophone 3">
-                    <div class="carousel-caption">
-                       <a href="https://pixabay.com/photos/gramophone-turntable-color-music-1721946/">Source: Pixabay</a>
-                    </div>
-                    </div>
+    <div class="center">
+        <div id="center-purchase">
+            <div id="purchase-container">
+                <div>
+                    <img id="purchase-img-lrg" src="images/purchase/flea-market-67370_1920.jpg">
+                    <ul id="gram-icons">
+                        <li><img id="gram1" class="img-icon" src="images/purchase/flea-market-67370_1920.jpg"></li>
+                        <li><img id="gram2" class="img-icon" src="images/purchase/gramophone-1721946_1920.jpg"></li>
+                        <li><img id="gram3" class="img-icon" src="images/purchase/gramophone-2290556_1920.jpg"></li>
+                    </ul> 
+                    <a href="downloads/gramophone-images.zip" download>Download Images</a>
                 </div>
-                <a href="/downloads/gramophone-images.zip" download>DL images</a>
-            </div>
 
-            <!-- Item information -->
-            <div id="purchase-blurb">
-                <h3>Gramophones</h3>
-                <h5> BUY BUY BUY </h5>       
-                <p>
-                    PLEASE buy our gramophones! <br>
-                    We have absolutely no idea what to do with these <br>
-                    There's like 600 of them in our warehouse <br><br>
 
-                    <b>Price</b>: $10,000 per 'phone <br><br>
-                </p>
+                <!-- Item information -->
+                <div id="purchase-blurb">
+                    <h3>Gramophones</h3>
+                    <h5> BUY BUY BUY </h5>       
+                    <p>
+                        PLEASE buy our gramophones! <br>
+                        We have absolutely no idea what to do with these!! <br>
+                        There's like 600 of them in our warehouse... <br>
+                        We're practically giving them away. <br><br>
+
+                        <b>Price</b>: $10,000 per 'phone (bitcoin only)<br><br>
+                    </p>
+                </div>
             </div>
         </div>
     </div>
+
+    <script src="js/purchase.js"></script>
 </div>

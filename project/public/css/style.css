@@ -14,12 +14,12 @@ body {
 }
 
 a {
-  color:rgb(161, 138, 138);
+  color:rgb(255, 255, 255);
   text-decoration: none;
 }
 
 a:hover {
-  color: rgb(97, 91, 91);
+  color: rgb(112, 106, 106);
 }
 
 ul {
@@ -140,18 +140,52 @@ ul {
 
 /* -------------------------------------------------------------------------- */
 /* Home Page Styles */
+#home-center {
+  display: inline-block;
+  text-align: left;
+  margin-left: inherit;
+  margin-right: inherit;
+  position: relative;
+}
+
 #home-image {
   margin: 0px;
-  max-height: 650px;
-  max-width: 100%;
+  height: 640px;
 }
 
 #home-carousel {
-  height: 50px;
   width: 960px;
+  height: 230px;
   align-items: center;
 }
 
+#home-src {
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+}
+
+.home-carousel-slide {
+  display: flex;
+  justify-content: center;
+  height: 230px;
+}
+
+.home-carousel-slide img {
+  width: 350px;
+}
+
+.left-img-src {
+  position: absolute;
+  bottom: 5px;
+  left: 250px;
+}
+
+.right-img-src {
+  position: absolute;
+  bottom: 5px;
+  right: 260px;
+}
 
 /* Store page styles */
 .store-center {
@@ -193,26 +227,55 @@ ul {
 
 #center-purchase {
   display: inline-block;
-  align-items: center;
-  margin-top: 100px;
+  margin-left: 120px;
+  margin-top: 75px;
   max-width: 880px;
-  width: 90%
+  width: 100%;
 }
 
 #purchase-container {
   display: flex;
   flex-direction: space-between;
+  background-color:rgb(160, 146, 146);
+  border-radius: 25px;
+  padding: 20px;
+  width: 700px;
 }
 
-#purchase-carousel {
-  height: 300px;
+#purchase-img-lrg {
+  height: 450px;
   width: 300px;
-  color: white;
+  border-radius: 12px;
+}
+
+#gram-icons {
+  display: flex;
+  justify-content: center;
+  padding: 0px;
+}
+
+#gram-icons li {
+  display: inline;
+  margin-top: 0px;
+  margin-right: 10px;
+}
+
+.img-icon {
+  height: 50px;
+  width: 33px;
+  border-radius: 5px;
+  filter: grayscale(1);
+}
+
+.img-icon:hover {
+  filter: none;
 }
 
 #purchase-blurb {
+  flex-shrink: 0;
+  text-align: left;
   margin: 100px;
-  max-width: 300px;
+  width: 305px;
   overflow-wrap: break-word;
 }
 

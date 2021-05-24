@@ -4,11 +4,12 @@ var app = express();
 var hbs = require('express-handlebars').create({defaultLayout:'main', extname: 'hbs',});
 var bodyParser = require('body-parser');
 
+
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set('port', 7431);
 app.use(express.static('public'));
-
+app.use(bodyParser.urlencoded({ extended: false}));
 
 // Render main four pages: home, store, purchase, and about
 app.get('/', function(req, res) {
@@ -90,8 +91,7 @@ app.get('/about', function(req, res) {
 
 // Form submission
 app.post('/about', function(req, res) {
-  console.log(req.body);
-  res.render('about', {title: 'About', condition: false});
+  res.render('form-received', req.body);
 });
 
 // Render error pages
