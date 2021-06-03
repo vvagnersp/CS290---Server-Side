@@ -11,11 +11,6 @@ app.get('/', function(req, res){
   res.sendFile(path.join(__dirname, '/index.html'));
 });
 
-connection.connect((err) => {
-  if (err) throw err;
-  console.log('Connected!');
-});
-
 // Get data
 app.get('/', function(req, res, next){
   var context = {};
