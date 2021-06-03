@@ -16,10 +16,10 @@ app.get('/reset-table',function(req,res,next){
     "reps INT,"+
     "weight INT,"+
     "date DATE,"+
-    "lbs BOOLEAN)";
+    "unit BOOLEAN)";
     mysql.pool.query(createString, function(err){
       context.results = "Table reset";
-      res.render('home',context);
+      res.sendFile(path.join(__dirname, 'index.html'));
     })
   });
 });
