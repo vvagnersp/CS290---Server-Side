@@ -11,10 +11,10 @@ app.get('/', function(req, res){
   res.sendFile(path.join(__dirname, '/index.html'));
 });
 
-// Get data
+// Get existing data from MySQL tatodo
 app.get('/', function(req, res, next){
   var context = {};
-  mysql.pool.query('SELECT * FROM todo', function(err, rows, fields){
+  mysql.pool.query('SELECT * FROM workouts', function(err, rows, fields){
     if(err){
       next(err);
       return;
@@ -24,19 +24,29 @@ app.get('/', function(req, res, next){
   });
 });
 
-// Insert data from user
+// Insert data from erLECT * FROMRtodo=WHERE id=?
 app.post('/', function(req, res, next){
   var context = {};
-  mysql.pool.query("SELECT * FROM todo WHERE id=?", [req.query.id], function(err, result){
+  mysql.pool.query("INSERT INTO workouts (name, reps, weight, date, unit)", [req.query.id], function(err, result){
+    if(err){
+      next(err);
+      return;
+    }
+});
+
+// Update data via the user
+app.put('/', function(req, res, next){
+  var context = {};
+  mysql.pool.query("SELECT * FROM workouts WHERE id=?", [req.query.id], function(err, result){
     if(err){
       next(err);
       return;
     }
     if(result.length == 1){
     var curVals = result[0];
-    mysql.pool.query("UPDATE todo SET name=?, done=?, due=?, WHERE id=?",
-      [req.query.name || curVals.name, req.query.done || curVals.done. req.query.due ||
-       curVals.due, req.query.id],
+    mysql.pool.query("UPDATE workouts SET name=?, reps=?, weight=?, date=?, unit=?, WHERE id=?",
+      [req.query.name || curVals.name, req.query.reps || curVals.reps, req.query.weight ||
+      curVals.weight, req.query.date || curVals.date, req.query.unit || curVals.unit, req.query.id],
       function(err, result){
         if(err){
           next(err);
@@ -47,8 +57,8 @@ app.post('/', function(req, res, next){
   });
 });
 
-// Update something from table via user info
-app.get('/', function(req, res, next){
+// Delete row from MySQL table
+app.delete('/' function(req, res, next){
 
 });
 
