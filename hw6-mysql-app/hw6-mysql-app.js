@@ -1,17 +1,20 @@
 var express = require('express');
 var mysql = require('./dbcon.js');
 var app = express();
-var path = require('path')
+var path = require('path');
+var bodyParser = require('body-parser');
 
 app.engine('html', require('ejs').renderFile);
 app.use(express.static('assets'));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 app.set('port', 7431);
 
 app.get('/', function(req, res){
   res.sendFile(path.join(__dirname, '/index.html'));
 });
 
-// Get existing data from MySQL tatodo
+// Get existing data from MySQL table
 app.get('/', function(req, res, next){
   var context = {};
   mysql.pool.query('SELECT * FROM workouts', function(err, rows, fields){
@@ -24,17 +27,20 @@ app.get('/', function(req, res, next){
   });
 });
 
-// Insert data from erLECT * FROMRtodo=WHERE id=?
+// // Insert data from user form
 app.post('/', function(req, res, next){
   var context = {};
-  mysql.pool.query("INSERT INTO workouts (name, reps, weight, date, unit)", [req.query.id], function(err, result){
+  mysql.pool.query("INSERT INTO workouts (name, reps, weight, date, unit) VALUES (?)", [req.query.c], function(err, result){
     if(err){
       next(err);
       return;
     }
+    context.results = "inserted id" + result.insertId;
+  });
+  console.log(req.body);
 });
 
-// Update data via the user
+// Update SQL table via user input
 app.put('/', function(req, res, next){
   var context = {};
   mysql.pool.query("SELECT * FROM workouts WHERE id=?", [req.query.id], function(err, result){
@@ -58,7 +64,7 @@ app.put('/', function(req, res, next){
 });
 
 // Delete row from MySQL table
-app.delete('/' function(req, res, next){
+app.delete('/', function(req, res, next){
 
 });
 
