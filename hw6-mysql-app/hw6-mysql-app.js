@@ -27,23 +27,24 @@ app.get('/', function(req, res, next){
   });
 });
 
-// // Insert data from user form
+// Insert data from user form
 app.post('/', function(req, res, next){
   var context = {};
-  mysql.pool.query("INSERT INTO workouts (name, reps, weight, date, unit) VALUES (?)", [req.query.c], function(err, result){
+  mysql.pool.query("INSERT INTO workouts (name, reps, weight, date, unit) VALUES (?)", 
+    [req.query.name, req.query.reps, req.query.weight, req.query.date, req.query.unit], function(err, result){
     if(err){
       next(err);
       return;
     }
+    console.log(req.query.weight);
     context.results = "inserted id" + result.insertId;
   });
-  console.log(req.body);
 });
 
 // Update SQL table via user input
 app.put('/', function(req, res, next){
   var context = {};
-  mysql.pool.query("SELECT * FROM workouts WHERE id=?", [req.query.id], function(err, result){
+  mysql.pool.query("SELECT * FROM workouts WHERE name=?", [req.query.name], function(err, result){
     if(err){
       next(err);
       return;
