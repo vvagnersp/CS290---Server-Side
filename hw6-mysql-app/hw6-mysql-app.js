@@ -4,11 +4,16 @@ var app = express();
 var path = require('path')
 
 app.engine('html', require('ejs').renderFile);
-app.use(express.static('public'));
+app.use(express.static('assets'));
 app.set('port', 7431);
 
 app.get('/', function(req, res){
   res.sendFile(path.join(__dirname, '/index.html'));
+});
+
+connection.connect((err) => {
+  if (err) throw err;
+  console.log('Connected!');
 });
 
 // Get data
@@ -20,6 +25,7 @@ app.get('/', function(req, res, next){
       return;
     }
     context.results = JSON.stringify(rows);
+    res.send(context)
   });
 });
 
