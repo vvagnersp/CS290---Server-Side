@@ -1,0 +1,25 @@
+body {
+	margin: 25px;
+}
+
+table, th, td {	
+	border: 1px solid black;
+	border-collapse: collapse;
+	width: 700px;
+	text-align: center;
+} 
+
+th, td {
+	width: 100px;
+	max-width: 100px;
+	align-content: center;
+}
+
+#workoutTable {
+	display: flex;
+	flex-direction: row;
+}
+
+#workoutTable div {
+	margin-right: 10px;
+}

@@ -1,0 +1,53 @@
+<h1>To Do List</h1>
+<div>
+    <form id="form" method="post">
+        <div>
+            <label for="name"><b>name:</b></label><br>
+            <input type="text" id="name" name="name">
+        </div>
+        <div>
+            <label for="reps"><b>reps:</b></label><br>
+            <input type="text" id="reps" name="reps">
+        </div>
+        <div>
+            <label for="weight"><b>weight:</b></label><br>
+            <input type="text" id="weight" name="weight">
+        </div>
+        <div>
+            <label for="date"><b>date:</b></label><br>
+            <input type="text" id="date" name="date">
+        </div>
+        <div>
+            <label for="unit"><b>unit (0=kg, 1=lbs):</b></label><br>
+            <input type="text" id="unit" name="unit">
+        </div>
+        <input id="updateSQL" type="submit" value="add to SQL" onclick="false">
+    </form>
+</div><br>
+<div>
+    <table id="todo">
+        <tr>
+            <th>name</th>
+            <th>reps</th>
+            <th>weight</th>
+            <th>date</th>
+            <th>unit</th>
+            <th>delete row</th>
+        </tr>
+        {{#each results}}
+        <form method="delete">
+            <tr>
+                <td>{{this.name}}</td>
+                <td>{{this.reps}}</td>
+                <td>{{this.weight}}</td>
+                <td>{{this.date}}</td>
+                <td>{{this.unit}}</td>
+                <td><input class="delButton" type="submit" value="delete" onclick="false"></td>
+            </tr>
+        </form>
+        {{/each}}
+    </table>
+    <button>add row</button>
+</div>  
+
+<script src="js/script.js"></script>

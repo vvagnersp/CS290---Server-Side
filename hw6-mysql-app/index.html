@@ -1,14 +1,14 @@
 <!doctype html>
 <html>
 <header>
-    <title>MySQL Exercise To-Do List</title>
+    <title>Exercise List</title>
     <link rel="stylesheet" href="css/style.css">
 </header>
 
 <body>
-    <h1>To Do List</h1>
+    <h1>Exercise List</h1>
     <div>
-        <form id="form" method="post">
+        <form id="workoutTable" method="post">
             <div>
                 <label for="name"><b>name:</b></label><br>
                 <input type="text" id="name" name="name">
@@ -33,7 +33,7 @@
         </form>
     </div><br>
     <div>
-        <table id="todo">
+        <table id="workouts">
             <tr>
                 <th>name</th>
                 <th>reps</th>
@@ -41,6 +41,7 @@
                 <th>date</th>
                 <th>unit</th>
                 <th>delete row</th>
+                <th>edit row</th>
             </tr>
         </table>
     </div>    

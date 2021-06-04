@@ -1,11 +1,16 @@
 var express = require('express');
 var mysql = require('./dbcon.js');
 var app = express();
-var path = require('path')
+var bodyParser = require('body-parser');
 
-app.engine('html', require('ejs').renderFile);
-app.use(express.static('public'));
+var handlebars = require('express-handlebars').create({defaultLayout:'main'});
+
+app.engine('handlebars', handlebars.engine);
+app.set('view engine', 'handlebars');
 app.set('port', 7431);
+app.use(express.static('assets'));
+app.use(bodyParser.urlencoded({ extended: false}));
+
 
 app.get('/reset-table',function(req,res,next){
   var context = {};
@@ -19,7 +24,7 @@ app.get('/reset-table',function(req,res,next){
     "unit BOOLEAN)";
     mysql.pool.query(createString, function(err){
       context.results = "Table reset";
-      res.sendFile(path.join(__dirname, 'index.html'));
+      res.render('home', context);
     })
   });
 });

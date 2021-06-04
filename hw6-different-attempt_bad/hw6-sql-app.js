@@ -1,18 +1,18 @@
 var express = require('express');
 var mysql = require('./dbcon.js');
 var app = express();
-var path = require('path');
 var bodyParser = require('body-parser');
 
-app.engine('html', require('ejs').renderFile);
-app.use(express.static('public'));
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
-app.set('port', 7431);
+var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 
-// Get existing data from MySQL table
-app.get('/', function(req, res, next){
-  res.render(path.join(__dirname, 'index.html')); 
+app.engine('handlebars', handlebars.engine);
+app.set('view engine', 'handlebars');
+app.set('port', 7431);
+app.use(express.static('assets'));
+app.use(bodyParser.urlencoded({ extended: false}));
+
+// Load page with existing data from SQL table
+app.get('/', function(req, res){
   var context = {};
   mysql.pool.query("SELECT * FROM workouts", function(err, rows, fields){
     if(err){
@@ -20,7 +20,7 @@ app.get('/', function(req, res, next){
       return;
     }
     context.results = rows;
-    res.send(context);
+    res.render('home', context);
   });
 });
 
@@ -33,9 +33,6 @@ app.post('/', function(req, res, next){
       next(err);
       return;
     }
-    context.results = result.insertId;
-    res.send(context);
-    console.log()
   });
 });
 
@@ -85,3 +82,4 @@ app.use(function(err, req, res, next){
 app.listen(app.get('port'), function(){
   console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
 });
+
