@@ -13,37 +13,50 @@ function loadTable(){
 
   // Table manipulation
   req.onload = function(){
-    var table = document.getElementById('workouts');
-    for (item in response){
-      var row = table.insertRow();
+    var response = JSON.parse(req.responseText).results;
+    if (response.length !== 0){ 
+      var majorKeys = Object.keys(response);
+      var minorKeys = Object.keys(response[majorKeys[0]]);
+      var table = document.getElementById('workouts');
+      for (key in majorKeys){
+        var row = table.insertRow();
+        // Create cells per row
+        for (j = 0; j <= 5; j++){
+          var cell = row.insertCell();
+    	  var text = response[majorKeys[key]][minorKeys[j + 1]];
+  	  if (text == null) {
+	    cell.innerText = '';
+	  }
+	  else if (minorKeys[j + 1] == 'date') {
+	    text = String(text).slice(0, 10);
+	    cell.innerText = text;
+	  }
+	  else {
+	    cell.innerText = String(text);
+	  }
+          cell.style.width = '100px';
+          cell.style.wordWrap = 'break-word';
+          cell.style.overflowWrap = 'break-word';
+          cell.contentEditable = 'true';
+          cell.style.textAlign = 'center';
+        }
+        // Add a delete button that will delete the row on click
+        var button = document.createElement('button');
+        button.innerHTML = 'delete';
+        deleteRow(button, row, response[majorKeys[key]][minorKeys[0]]);
+        cell.appendChild(button);
+        row.style.border = '1px solid black';
 
-      // Create cells per row
-      for (j = 0; j <= 5; j++){
-        var cell = row.insertCell();
-        cell.style.width = '100px';
-        cell.innerText = item[keys[j]];
-        cell.style.wordWrap = 'break-word';
-        cell.style.overflowWrap = 'break-word';
-        cell.contentEditable = 'true';
-        cell.style.textAlign = 'center';
+        // Add button for editing row on click
+        var button = document.createElement('button');
+        button.innerHTML = 'edit';
+        editRow(button, row, response[majorKeys[key]][minorKeys[0]]);
+        row.appendChild(button);
+        row.style.border = '1px solid black'; 
       }
-    // Add a delete button that will delete the row on click
-    var button = document.createElement('button');
-      button.innerHTML = 'delete';
-    deleteRow(button, row, response);
-    cell.appendChild(button);
-    row.style.border = '1px solid black';
-
-    // Add button for editing row on click
-      var button = document.createElement('button');
-    button.innerHTML = 'edit';
-    editRow(button, row, response);
-    row.appendChild(button);
-    row.style.border = '1px solid black'; 
     }
   }
   req.send(null);
-  var response = req.responseText;
 }
 
 // Add functionality to the 'update SQL' button to update SQL
