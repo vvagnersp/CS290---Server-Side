@@ -10,38 +10,40 @@ function loadTable(){
   var req = new XMLHttpRequest();
     
   req.open('GET', url);
-  req.send(null);
-
-  var response = req.responseText;
-  console.log(response);
 
   // Table manipulation
-  var table = document.getElementById('workouts');
-  // for (item in response){
-  //   var row = table.insertRow();
-  //   // Create cells per row
-  //   for (j = 0; j <= 5; j++){
-  //     var cell = row.insertCell();
-  //     cell.style.width = '100px';
-  //     cell.style.wordWrap = 'break-word';
-  //     cell.style.overflowWrap = 'break-word';
-  //     cell.contentEditable = 'true';
-  //     cell.style.textAlign = 'center';
-  //   }
-  // // Add a delete button that will delete the row on click
-  // var button = document.createElement('button');
-  // button.innerHTML = 'delete';
-  // deleteRow(button, row, response);
-  // cell.appendChild(button);
-  // row.style.border = '1px solid black';
+  req.onload = function(){
+    var table = document.getElementById('workouts');
+    for (item in response){
+      var row = table.insertRow();
 
-  // // Add button for editing row on click
-  // var button = document.createElement('button');
-  // button.innerHTML = 'edit';
-  // editRow(button, row, response);
-  // row.appendChild(button);
-  // row.style.border = '1px solid black'; 
-  // }
+      // Create cells per row
+      for (j = 0; j <= 5; j++){
+        var cell = row.insertCell();
+        cell.style.width = '100px';
+        cell.innerText = item[keys[j]];
+        cell.style.wordWrap = 'break-word';
+        cell.style.overflowWrap = 'break-word';
+        cell.contentEditable = 'true';
+        cell.style.textAlign = 'center';
+      }
+    // Add a delete button that will delete the row on click
+    var button = document.createElement('button');
+      button.innerHTML = 'delete';
+    deleteRow(button, row, response);
+    cell.appendChild(button);
+    row.style.border = '1px solid black';
+
+    // Add button for editing row on click
+      var button = document.createElement('button');
+    button.innerHTML = 'edit';
+    editRow(button, row, response);
+    row.appendChild(button);
+    row.style.border = '1px solid black'; 
+    }
+  }
+  req.send(null);
+  var response = req.responseText;
 }
 
 // Add functionality to the 'update SQL' button to update SQL
