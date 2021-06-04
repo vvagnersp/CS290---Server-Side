@@ -3,22 +3,22 @@ var mysql = require('./dbcon.js');
 var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
+var cors = require('cors');
 
-app.engine('html', require('ejs').renderFile);
-app.use(express.static('public'));
+app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.set('port', 7431);
 
-// Get existing data from MySQL table
+// GET SQL data that already exists
 app.get('/', function(req, res, next){
-  res.render(path.join(__dirname, 'index.html')); 
   var context = {};
   mysql.pool.query("SELECT * FROM workouts", function(err, rows, fields){
     if(err){
       next(err);
       return;
     }
+    console.log(rows);
     context.results = rows;
     res.send(context);
   });
@@ -35,14 +35,14 @@ app.post('/', function(req, res, next){
     }
     context.results = result.insertId;
     res.send(context);
-    console.log()
   });
 });
 
 // Update SQL table via user input
 app.put('/', function(req, res, next){
   var context = {};
-  mysql.pool.query("SELECT * FROM workouts WHERE name=?", [req.body.name], function(err, result){
+  console.log(req.body.id);
+  mysql.pool.query("SELECT * FROM workouts WHERE id=?", [req.body.id], function(err, result){
     if(err){
       next(err);
       return;
@@ -50,8 +50,8 @@ app.put('/', function(req, res, next){
     if(result.length == 1){
     var curVals = result[0];
     mysql.pool.query("UPDATE workouts SET name=?, reps=?, weight=?, date=?, unit=?, WHERE id=?",
-      [req.query.name || curVals.name, req.query.reps || curVals.reps, req.query.weight ||
-      curVals.weight, req.query.date || curVals.date, req.query.unit || curVals.unit, req.query.id],
+      [req.body.name || curVals.name, req.body.reps || curVals.reps, req.body.weight ||
+      curVals.weight, req.body.date || curVals.date, req.body.unit || curVals.unit, req.body.id],
       function(err, result){
         if(err){
           next(err);
@@ -64,7 +64,14 @@ app.put('/', function(req, res, next){
 
 // Delete row from MySQL table
 app.delete('/', function(req, res, next){
-
+  mysql.pool.query("DELETE FROM workouts WHERE id=?", [req.body.id],
+    function(err, result){
+      if(err){
+        next(err);
+        return;
+      }
+      res.send("successful delete");
+    });
 });
 
 // Error Handling
