@@ -19,19 +19,19 @@
             </div>
             <div>
                 <label for="reps"><b>reps:</b></label><br>
-                <input type="text" id="reps" name="reps">
+                <input type="number" id="reps" name="reps" min="0">
             </div>
             <div>
                 <label for="weight"><b>weight:</b></label><br>
-                <input type="text" id="weight" name="weight">
+                <input type="number" id="weight" name="weight" min="0">
             </div>
             <div>
                 <label for="date"><b>date:</b></label><br>
-                <input type="text" id="date" name="date">
+                <input type="date" id="date" name="date">
             </div>
             <div>
                 <label for="unit"><b>unit (0=kg, 1=lbs):</b></label><br>
-                <input type="text" id="unit" name="unit">
+                <input type="number" id="unit" name="unit" min="0" max="1">
             </div>
             <input id="updateSQL" type="submit" value="add to SQL">
         </form>

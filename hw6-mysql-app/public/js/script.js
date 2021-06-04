@@ -14,26 +14,32 @@ function loadTable(){
   // Table manipulation
   req.onload = function(){
     var response = JSON.parse(req.responseText).results;
+    
+    // If there is data in the response, load it
     if (response.length !== 0){ 
+      // Grab relevant keys from response object
       var majorKeys = Object.keys(response);
       var minorKeys = Object.keys(response[majorKeys[0]]);
       var table = document.getElementById('workouts');
+
+      // Create a new table for each row with buttons for edit and delete
       for (key in majorKeys){
         var row = table.insertRow();
         // Create cells per row
         for (j = 0; j <= 5; j++){
           var cell = row.insertCell();
-    	  var text = response[majorKeys[key]][minorKeys[j + 1]];
-  	  if (text == null) {
-	    cell.innerText = '';
-	  }
-	  else if (minorKeys[j + 1] == 'date') {
-	    text = String(text).slice(0, 10);
-	    cell.innerText = text;
-	  }
-	  else {
-	    cell.innerText = String(text);
-	  }
+          var text = response[majorKeys[key]][minorKeys[j + 1]];
+          // Fill text fields with sanitized info from database
+          if (text == null) {
+          cell.innerText = '';
+          }
+          else if (minorKeys[j + 1] == 'date') {
+            text = String(text).slice(0, 10);
+            cell.innerText = text;
+          }
+          else {
+            cell.innerText = String(text);
+          }
           cell.style.width = '100px';
           cell.style.wordWrap = 'break-word';
           cell.style.overflowWrap = 'break-word';
@@ -157,8 +163,8 @@ function editRow(button, row, uniqueId){
       date: "",
       unit: ""
     }
+    // Create the payload
     payload['id'] = uniqueId;
-
     keys = Object.keys(payload);
     var data = row.getElementsByTagName('td');
     for (var i = 1; i < 6; i++){

@@ -4,6 +4,7 @@ var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
 var cors = require('cors');
+const { rawListeners } = require('process');
 
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -18,7 +19,6 @@ app.get('/', function(req, res, next){
       next(err);
       return;
     }
-    console.log(rows);
     context.results = rows;
     res.send(context);
   });
@@ -41,22 +41,22 @@ app.post('/', function(req, res, next){
 // Update SQL table via user input
 app.put('/', function(req, res, next){
   var context = {};
-  console.log(req.body.id);
   mysql.pool.query("SELECT * FROM workouts WHERE id=?", [req.body.id], function(err, result){
     if(err){
       next(err);
       return;
     }
     if(result.length == 1){
-    var curVals = result[0];
-    mysql.pool.query("UPDATE workouts SET name=?, reps=?, weight=?, date=?, unit=?, WHERE id=?",
-      [req.body.name || curVals.name, req.body.reps || curVals.reps, req.body.weight ||
-      curVals.weight, req.body.date || curVals.date, req.body.unit || curVals.unit, req.body.id],
-      function(err, result){
-        if(err){
-          next(err);
-          return;
-        }
+      curVals = result[0];
+      mysql.pool.query("UPDATE workouts SET name=?, reps=?, weight=?, date=?, unit=? WHERE id=?",
+        [req.body.name || curVals.name, req.body.reps || curVals.reps, req.body.weight ||
+        curVals.weight, req.body.date || curVals.date, req.body.unit || curVals.unit, req.body.id],
+        function(err, result){
+          if(err){
+            next(err);
+            return;
+          }
+        res.send('update successful');
       });
     }
   });
